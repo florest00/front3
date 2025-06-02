@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon_io/favicon.ico" type="image/x-icon" />
+    <script defer src="./script.js"></script>
+</head>
+
+<body>
+    <div id="loginPage">
+        <h2>MyPage</h2>
+        <form class="box">
+            <div class="input-wrapper">
+                <input type="text" id="loginId" placeholder="아이디 입력 (4~12자)" />
+                <input type="password" id="loginPw" placeholder="비밀번호 입력" />
+                <div id="saveLoginStatus">
+                    <input type="radio"><span>로그인 상태 유지</span>
+                </div>
+                <button onclick="loginWithValidation(event)" class="loginBtn">로그인</button>
+            </div>
+        </form>
+    </div>
+    <div id="nameInputPage">
+        <!-- (구) loginPage -->
+        <h2>이름을 입력하세요</h2>
+        <input type="text" id="usernameInput" placeholder="이름을 입력하세요" />
+        <button onclick="completeRegistration()">입장</button>
+        <!-- <button onclick="enterSite()">입장</button> -->
+    </div>
+
+    <div id="mainPage">
+        <header>
+            <h1>마이페이지</h1>
+            <div class="button-area">
+                <button onclick="showModal()">공지 사항</button>
+                <button onclick="togglePostForm()">게시글 등록</button>
+                <button onclick="toggleEdit()">카드 수정</button>
+                <button onclick="logout()">나가기</button>
+            </div>
+        </header>
+
+
+        <div id="modalOverlay" class="modal-overlay hidden" onclick="closeModal(event)">
+            <div class="modal" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <span>📢 공지 사항</span>
+                    <button class="close-button" onclick="closeModal(event)">✕</button>
+                </div>
+                <div class="modal-body">
+                    마이페이지는 개발중입니다!
+                </div>
+                <div class="modal-footer">
+                    <button onclick="closeModal(event)">확인</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="welcomeMsg"></div>
+
+        <div class="content">
+            <div class="l">
+                <div class="card" id="profileCard">
+                    <img id="profileImage" src="https://via.placeholder.com/300x200" alt="프로필 사진" />
+                    <h2 id="profileName">홍길동</h2>
+                    <p id="profileIntro">안녕하세요! 반갑습니다.</p>
+                    <div id="editForm">
+                        <input type="file" id="newImage" accept="image/*" /><br />
+                        <input type="text" id="newIntro" placeholder="한줄 소개 입력" /><br />
+                        <button onclick="saveProfile()">저장</button>
+                    </div>
+                </div>
+                <ul class="category-menu">
+                    <li data-category="todo" onclick="switchCategory('todo')">To Do List</li>
+                    <li data-category="board" onclick="switchCategory('board')">게시판</li>
+                    <li class="has-submenu">
+                        미니 게임
+                        <ul class="submenu">
+                            <li data-category="game" onclick="switchCategory('game')">개발중 🔨</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="r">
+                <div id="todoSection" class="hidden todo-container">
+                    <div class="todo-column" data-status="todo">
+                        <h3>해야 할 일</h3>
+                        <div class="todo-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <input type="text" placeholder="할 일 입력..." class="todo-input" />
+                        <select class="priority-select">
+                            <option value="low">낮음</option>
+                            <option value="normal">보통</option>
+                            <option value="high">높음</option>
+                        </select>
+                        <button onclick="addTodo(this)">추가</button>
+                    </div>
+
+                    <div class="todo-column" data-status="doing">
+                        <h3>진행 중</h3>
+                        <div class="todo-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+
+                    <div class="todo-column" data-status="done">
+                        <h3>완료</h3>
+                        <div class="todo-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+
+                </div>
+
+                <div id="postSection">
+                    <select id="sortOption" onchange="sortPosts()">
+                        <option value="latest">최신순</option>
+                        <option value="oldest">오래된순</option>
+                        <option value="name">이름순</option>
+                        <option value="views">조회순</option>
+                    </select>
+
+                    <div id="postForm" class="hidden">
+                        <input type="text" id="postTitle" placeholder="제목" /><br />
+                        <textarea id="postContent" placeholder="내용" rows="5"></textarea><br />
+                        <input type="file" id="postImage" accept="image/*" /><br />
+                        <button onclick="submitPost()">등록</button>
+                    </div>
+
+                    <ul id="postList"></ul>
+
+                    <div id="postDetail" class="hidden">
+                        <h3 id="detailTitle"></h3>
+                        <img id="detailImage" src="" alt="상세 이미지" />
+                        <p id="detailContent"></p>
+                        <button onclick="closeDetail()">목록으로</button>
+                        <button onclick="editPost()">수정</button>
+                        <button onclick="deletePost()">삭제</button>
+
+                        <div id="commentSection">
+                            <h3>댓글</h3>
+                            <ul id="commentList"></ul>
+                            <div id="commentForm">
+                                <input type="text" id="commentName" placeholder="이름" />
+                                <input type="text" id="commentContent" placeholder="댓글 내용" />
+                                <button onclick="addComment()">댓글 등록</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>© 2025 홍길동 | <a href="https://github.com/yourname" target="_blank">GitHub</a></p>
+            <p>Made with HTML, CSS, JavaScript | LocalStorage 기반</p>
+            <p>v1.0.0 | 최종 수정일: 2025-05-24</p>
+            <p>문의: <a href="mailto:you@example.com">you@example.com</a></p>
+        </footer>
+
+
+    </div>
+
+
+</body>
+
+</html>

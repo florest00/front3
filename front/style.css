@@ -1,0 +1,606 @@
+@import "./reset.css";
+
+
+/* border: 1px solid #e4e4e4; */
+
+.hidden {
+  display: none !important;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  color: #242424;
+}
+
+button {
+  cursor: pointer;
+
+  font-size: 16px;
+  padding: 10px 16px;
+  border: none;
+}
+
+.loginBtn {
+  background: #3f3e3e;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  padding: 8px 0;
+}
+
+#loginPage .box {
+  background: rgba(240, 240, 240, 0.1);
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 30vw;
+  height: fit-content;
+  padding: 52px 0;
+
+  animation: fadeIn 3s ease-in-out;
+}
+
+#loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(./resources/img/stars-13910.gif);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+
+#loginPage h2 {
+  margin-bottom: 24px;
+  font-size: 32px;
+  font-weight: 600;
+
+  color: #f0f0f0;
+
+  font-family: cursive;
+  animation: fadeIn 3s ease-in-out;
+}
+
+#loginPage .input-wrapper {
+  width: 20vw;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#loginPage .input-wrapper input {
+  color: #f0f0f0;
+  margin-bottom: 18px;
+  font-size: 20px;
+  border-style: none;
+  background: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+#loginPage .input-wrapper input:focus {
+  outline: none;
+  border-bottom: 3px solid #f0f0f0;
+}
+
+#loginPage .input-wrapper button {
+  position: relative;
+  font-size: 20px;
+  width: 100%;
+  padding: 0.75em;
+  background-color: #333;
+  color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#loginPage .input-wrapper button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #242424;
+  transition: left 0.4s ease-in-out;
+  z-index: -1;
+}
+
+#loginPage .input-wrapper button:hover::before {
+  left: 0;
+}
+
+#saveLoginStatus {
+  margin: 2px 0 8px 0;
+  display: flex;
+  line-height: 1.25;
+}
+
+#saveLoginStatus span {
+  color: #f0f0f0;
+}
+
+#saveLoginStatus input {
+  width: 18px;
+  height: 18px;
+
+  margin-right: 8px;
+}
+
+#nameInputPage {
+  display: none;
+
+
+}
+
+#mainPage {
+  display: none;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#welcomeMsg {
+  text-align: center;
+  display: none;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.button-area button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  background-color: #555;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 40px 40px 100vh 20px;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.l,
+.r {
+  flex: none;
+}
+
+.l {
+  width: 300px;
+}
+
+.category-menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.category-menu>li {
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.category-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.category-menu li.active {
+  font-weight: bold;
+  background-color: #def2f0;
+  color: #242424;
+}
+
+.category-menu .has-submenu {
+  position: relative;
+}
+
+.category-menu .submenu {
+  list-style: none;
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+.category-menu .submenu li {
+  font-weight: normal;
+  padding: 5px;
+  cursor: pointer;
+}
+
+
+.category-menu .submenu li:hover {
+  background-color: #eaeaea;
+}
+
+
+.todo-container {
+  display: flex;
+  gap: 20px;
+}
+
+.todo-column {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #e4e4e4;
+}
+
+.todo-column h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.todo-list {
+  min-height: 200px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  cursor: move;
+  font-size: 14px;
+}
+
+.priority-low {
+  background-color: #e0f7fa;
+}
+
+.priority-normal {
+  background-color: #ffe0b2;
+}
+
+.priority-high {
+  background-color: #ffcdd2;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.todo-input {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid #e4e4e4;
+}
+
+.r {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.card {
+  border: 1px solid #e4e4e4;
+  padding: 16px;
+  width: 100%;
+  max-width: 300px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+#editForm {
+  margin-top: 16px;
+  display: none;
+}
+
+#editForm input[type="text"] {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 6px;
+}
+
+.r {
+  flex: 2;
+}
+
+#postSection {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e4e4e4;
+}
+
+#postForm {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #e4e4e4;
+  max-width: 100%;
+  background-color: #fefefe;
+  border-radius: 4px;
+}
+
+#postForm input,
+#postForm textarea {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+#postList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#postList li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+#postList li:hover {
+  background-color: #f0f0f0;
+}
+
+#postDetail {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #e4e4e4;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+#detailImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: none;
+  border-radius: 6px;
+}
+
+.comment-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+.comment-item span {
+  margin-right: 6px;
+}
+
+#commentForm {
+  margin-top: 10px;
+}
+
+#commentForm input {
+  padding: 6px;
+  margin-right: 5px;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-header {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.modal-footer {
+  padding: 0.75rem 1rem;
+  text-align: right;
+}
+
+.modal-footer button {
+  width: 100%;
+  background-color: #ccc;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #666;
+  background-color: #f1f1f1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  #loginPage .box {
+
+    width: 90%;
+    max-width: 400px;
+  }
+
+  #loginPage .input-wrapper {
+    width: 100%;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button-area {
+    margin-top: 10px;
+  }
+
+  .content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .l,
+  .r {
+    flex: unset;
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #profileName {
+    margin-top: 8px !important;
+  }
+
+  .todo-container {
+    display: block;
+    padding: 0;
+  }
+
+  #todoSection>div {
+    width: 100%;
+  }
+
+  #postForm,
+  #postDetail {
+    max-width: 100%;
+  }
+
+  #detailImage {
+    height: auto;
+  }
+
+  footer {
+    position: static;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+  }
+
+  #postForm input,
+  #postForm textarea,
+  #commentForm input {
+    font-size: 0.9rem;
+    padding: 5px;
+  }
+
+  #commentForm input {
+    width: calc(50% - 6px);
+  }
+
+  #commentForm button {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+  }
+}
